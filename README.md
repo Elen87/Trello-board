@@ -1,9 +1,9 @@
 # Домашнее задание к занятию "6. Работа с файлами, DnD"
 
-[![Deploy to GitHub Pages](https://github.com/Elen87/trello-board/actions/workflows/deploy.yml/badge.svg)](https://github.com/Elen87/trello-board/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/Elen87/Trello-board/actions/workflows/deploy.yml/badge.svg)](https://github.com/Elen87/Trello-board/actions/workflows/deploy.yml)
 
 
-🔗 [https://Elen87.github.io/trello-board/](https://Elen87.github.io/trello-board/)
+🔗 [https://Elen87.github.io/Trello-board/](https://Elen87.github.io/Trello-board/)
 
 
 Правила сдачи задания:
