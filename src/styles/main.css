@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #0079bf;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.board {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+/* Колонка */
+.column {
+    background: #ebecf0;
+    border-radius: 10px;
+    width: 280px;
+    min-width: 280px;
+    padding: 12px;
+}
+
+.column-header {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding: 0 8px;
+    color: #172b4d;
+}
+
+.cards-list {
+    min-height: 100px;
+}
+
+/* Карточка */
+.card {
+    background: white;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    position: relative;
+    word-wrap: break-word;
+    transition: background 0.2s;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card.dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+}
+
+.card:hover {
+    background: #f4f5f7;
+}
+
+/* Кнопка удаления */
+.delete-card {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: #ebecf0;
+    border-radius: 4px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6b778c;
+}
+
+.card:hover .delete-card {
+    display: flex;
+}
+
+.delete-card:hover {
+    background: #c0c4cf;
+    color: #172b4d;
+}
+
+/* Placeholder для перетаскивания */
+.card-placeholder {
+    background: #9bc4e0;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    height: 56px;
+}
+
+/* Кнопка добавления карточки */
+.add-card-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+    color: #5e6c84;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.add-card-btn:hover {
+    background: #dfe1e6;
+    color: #172b4d;
+}
+
+/* Форма добавления карточки */
+.add-card-form {
+    display: none;
+    margin-top: 8px;
+}
+
+.add-card-form.active {
+    display: block;
+}
+
+.add-card-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #0079bf;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 60px;
+}
+
+.add-card-form textarea:focus {
+    outline: none;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.add-card-confirm {
+    background: #0079bf;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-card-cancel {
+    background: none;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: #5e6c84;
+}
