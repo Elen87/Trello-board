@@ -176,3 +176,24 @@ h1 {
     cursor: pointer;
     color: #5e6c84;
 }
+
+/* Стили для клона карточки при перетаскивании */
+.card.dragging {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drag-clone {
+  transform: rotate(5deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: grabbing !important;
+}
+
+.card-placeholder {
+  background: #e3f0fa;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+  border: 2px dashed #0079bf;
+}
+

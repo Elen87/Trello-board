@@ -1,0 +1,20 @@
+
+# Зависимости
+node_modules/
+yarn-error.log
+
+# Сборка
+dist/
+
+# Логи и временные файлы
+*.log
+*.tmp
+.DS_Store
+
+# Редакторы
+.vscode/
+.idea/
+
+# Кэш
+.cache/
+*.cache

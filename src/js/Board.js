@@ -1,9 +1,9 @@
+
 import Column from './Column';
 import DragAndDrop from './DragAndDrop';
 
 const STORAGE_KEY = 'trello-board';
 
-// Начальные данные
 const defaultData = {
   columns: [
     { id: 'todo', title: 'TODO', cards: [
@@ -31,13 +31,21 @@ export default class Board {
   constructor(container) {
     this.container = container;
     this.columns = [];
-    this.dragAndDrop = new DragAndDrop(this);
+    this.dragAndDrop = null;
     this.init();
   }
 
   init() {
     this.loadFromStorage();
     this.render();
+    this.initDragAndDrop();
+  }
+
+  initDragAndDrop() {
+    if (this.dragAndDrop) {
+      this.dragAndDrop = null;
+    }
+    this.dragAndDrop = new DragAndDrop(this);
     this.dragAndDrop.init();
   }
 
@@ -47,10 +55,10 @@ export default class Board {
       try {
         this.data = JSON.parse(saved);
       } catch (e) {
-        this.data = defaultData;
+        this.data = JSON.parse(JSON.stringify(defaultData));
       }
     } else {
-      this.data = defaultData;
+      this.data = JSON.parse(JSON.stringify(defaultData));
     }
   }
 
@@ -75,7 +83,7 @@ export default class Board {
       column.cards.push(text.trim());
       this.saveToStorage();
       this.render();
-      this.dragAndDrop.init();
+      this.initDragAndDrop();
     }
   }
 
@@ -85,7 +93,7 @@ export default class Board {
       column.cards.splice(cardIndex, 1);
       this.saveToStorage();
       this.render();
-      this.dragAndDrop.init();
+      this.initDragAndDrop();
     }
   }
 
@@ -93,10 +101,10 @@ export default class Board {
     const fromColumn = this.data.columns.find(col => col.id === fromColumnId);
     const toColumn = this.data.columns.find(col => col.id === toColumnId);
     
-    if (fromColumn && toColumn) {
+    if (fromColumn && toColumn && fromColumn.cards[fromCardIndex]) {
       const [movedCard] = fromColumn.cards.splice(fromCardIndex, 1);
       
-      if (toCardIndex === undefined || toCardIndex === null) {
+      if (toCardIndex === undefined || toCardIndex === null || toCardIndex >= toColumn.cards.length) {
         toColumn.cards.push(movedCard);
       } else {
         toColumn.cards.splice(toCardIndex, 0, movedCard);
@@ -104,19 +112,7 @@ export default class Board {
       
       this.saveToStorage();
       this.render();
-      this.dragAndDrop.init();
+      this.initDragAndDrop();
     }
-  }
-
-  getColumnIndex(columnId) {
-    return this.data.columns.findIndex(col => col.id === columnId);
-  }
-
-  getCardElement(columnIndex, cardIndex) {
-    const column = this.columns[columnIndex];
-    if (column && column.cardsList.children[cardIndex]) {
-      return column.cardsList.children[cardIndex];
-    }
-    return null;
   }
 }

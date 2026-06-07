@@ -1,3 +1,4 @@
+
 export default class Column {
   constructor(columnData, columnIndex, board) {
     this.data = columnData;
@@ -21,7 +22,7 @@ export default class Column {
     // Список карточек
     this.cardsList = document.createElement('div');
     this.cardsList.className = 'cards-list';
-    this.cardsList.dataset.columnId = this.data.id;
+    this.cardsList.dataset.columnId = this.data.id;  // Важно для DnD
     
     // Карточки
     this.data.cards.forEach((cardText, cardIndex) => {
@@ -105,10 +106,5 @@ export default class Column {
     form.classList.add('active');
     const textarea = form.querySelector('textarea');
     textarea.focus();
-  }
-
-  addCardElement(cardText, cardIndex) {
-    const card = this.createCardElement(cardText, cardIndex);
-    this.cardsList.appendChild(card);
   }
 }
